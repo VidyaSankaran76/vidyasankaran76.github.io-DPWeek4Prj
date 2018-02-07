@@ -1,0 +1,59 @@
+Data Products Shiny Project - Week 4  
+========================================================
+author: Vidya Sankaran
+date: 07/Feb/2018
+autosize: true
+
+Executive Summary
+========================================================
+This Shiny Applicaiton is predicting the weight of Chicken, by the following predictors.
+- Time -  Age of the Chicken in Months ranges from 1 month to 21 months
+- Type -  Type of Chicken. There are around 50 chicken types considered in this dataset
+- Diet -  Diet Type of Chicken. There are 4 diet types considered in given dataset.
+
+
+```{r  message=FALSE, results='hide'}
+str(ChickWeight)
+summary(ChickWeight$Time)
+fit1 <- lm(weight~Time+Chick, data=ChickWeight)
+```
+
+Plot
+========================================================
+
+```{r  message=FALSE, results='hide'}
+plot(weight~Time, data=ChickWeight)
+
+```
+
+Application
+========================================================
+
+The weight of chicken is predicted by various factors such as Chicken's Age in months, 
+chicken's diet, chicken's type. Linear regression model is applied to predict the
+weight of chicken with the predictors as Age, type of chicken and diet of chicken.
+
+First model predicts the chicken's weight with  the Age and type of Chicken as predictors.  
+For Model1 : Provide inputs for  the Age of the Chicken and Type of Chicken
+
+Second model predicts the weight of chicken with predictors as age of the chicken and the diet of the chicken. 
+For Model2 : Provide inputs the Age of the Chicken and Diet of Chicken.
+
+
+
+Output
+========================================================
+
+You can feed the inputs for the models and see the output in the predicted response plot and also in the table. 
+
+The table provides predicted weight of chicken from first month to the max month given in the input.
+
+```{r  message=FALSE, results='asis'}
+
+model2 <- lm(weight~Time+Diet, data=ChickWeight)
+
+predictor2 <-predict(model2, newdata=data.frame("Time"=1:7, "Chick"="18", "Diet"="1"))
+predictor2
+
+```
+
